@@ -52,8 +52,6 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
   const taskNotes = ui.taskNotes.value;
   // Get task date
   const taskDate = ui.taskDate.value;
-  // Get task time
-  const taskTime = ui.taskTime.value;
   // Get task priority
   let priority;
   // loop through radio buttons and find selected option
@@ -68,7 +66,6 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
     taskName,
     taskNotes,
     taskDate,
-    taskTime,
     priority
   );
   // render the tasks to the display

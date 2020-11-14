@@ -52,7 +52,7 @@ class StorageAndData {
   }
 
   // Function to create new task
-  createNewTask(name, notes, date, time, priority) {
+  createNewTask(name, notes, date, priority) {
     // Find selected list
     const selectedList = this.findSelectedList();
     // Create new task object
@@ -61,7 +61,6 @@ class StorageAndData {
       name,
       notes,
       date,
-      time,
       priority,
       completed: false,
     };
