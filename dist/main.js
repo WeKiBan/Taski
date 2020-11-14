@@ -1,0 +1,114 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is not neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! namespace exports */
+/*! exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ui */ \"./src/ui.js\");\n/* harmony import */ var _storage_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage-data */ \"./src/storage-data.js\");\n// IMPORTED MODULES\n;\n\n\n// EVENT LISTENERS\n// on window load retrieved saved data and render\ndocument.addEventListener('DOMContentLoaded', function () {\n  // render the lists when dom loads\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderLists();\n  // if there are lists to render render the tasks\n  if (_storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.lists.length !== 0) {\n    _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderTasks();\n  }\n});\n\n// Event listener on toggle button\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.menuToggle.addEventListener('click', _ui__WEBPACK_IMPORTED_MODULE_0__.ui.openAndCloseSideMenu);\n\n// Event listener for side menu close btn\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.closeSideMenuBtn.addEventListener('click', _ui__WEBPACK_IMPORTED_MODULE_0__.ui.openAndCloseSideMenu);\n\n// Event listener on overlay to close side menu\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.overlay.addEventListener('click', _ui__WEBPACK_IMPORTED_MODULE_0__.ui.openAndCloseSideMenu);\n\n// Event listener to create new list\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.newListForm.addEventListener('submit', function (e) {\n  // Get new list name from input\n  const listName = _ui__WEBPACK_IMPORTED_MODULE_0__.ui.newListInput.value;\n\n  if (listName === '') return;\n  // Create new list item\n  _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.createList(listName);\n  // Render lists in side menu\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderLists();\n  // Clear input value\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.newListInput.value = '';\n  // Render the tasks\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderTasks();\n  // Save to local storage\n  _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.saveToLocalStorage();\n  // close the side menu on submit\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.openAndCloseSideMenu();\n\n  e.preventDefault();\n});\n\n// Event Listener to submit new task\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.submitTaskBtn.addEventListener('click', function (e) {\n  // Get task title\n  const taskName = _ui__WEBPACK_IMPORTED_MODULE_0__.ui.taskTitle.value.toLowerCase();\n  // Get task notes\n  const taskNotes = _ui__WEBPACK_IMPORTED_MODULE_0__.ui.taskNotes.value;\n  // Get task date\n  const taskDate = _ui__WEBPACK_IMPORTED_MODULE_0__.ui.taskDate.value;\n  // Get task time\n  const taskTime = _ui__WEBPACK_IMPORTED_MODULE_0__.ui.taskTime.value;\n  // Get task priority\n  let priority;\n  // loop through radio buttons and find selected option\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.priorityRadio.forEach((radio) => {\n    // check if radio button is selected if selected assign value to priority\n    if (radio.checked === true) {\n      priority = radio.value;\n    }\n  });\n  // Create a new task\n  _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.createNewTask(\n    taskName,\n    taskNotes,\n    taskDate,\n    taskTime,\n    priority\n  );\n  // render the tasks to the display\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderTasks();\n  // save to local storage\n  _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.saveToLocalStorage();\n\n  e.preventDefault();\n});\n\n// Event listener to delete current list\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.deleteListBtn.addEventListener('click', function (e) {\n  // Delete the currently selected list\n  _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.deleteList(_storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.selectedListId);\n  // Remove list name from ui\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.currentListName.textContent = '';\n  // Render lists in side menu\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderLists();\n  // show list deleted message\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.showListDeletedMessage();\n  // Save to local storage\n  _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.saveToLocalStorage();\n});\n\n// Event listener to clear completed tasks\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.clearCompleteBtn.addEventListener('click', function (e) {\n  // clear the completed tasks\n  _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.clearCompletedTasks();\n  // render tasks\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderTasks();\n  // save to local storage\n  _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.saveToLocalStorage();\n\n  e.preventDefault();\n});\n\n//Event listener for sort dropdown\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.sortDropdown.addEventListener('change', function (e) {\n  // render tasks\n  _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderTasks();\n});\n\n// Event listener on lists in side menu to select individual list\n_ui__WEBPACK_IMPORTED_MODULE_0__.ui.allLists.addEventListener('click', function (e) {\n  // check if element clicked is an li node\n  if (e.target.nodeName === 'LI') {\n    // Get the id of the element saved to the data set\n    const id = e.target.dataset.id;\n    // set new selected list id\n    _storage_data__WEBPACK_IMPORTED_MODULE_1__.storageAndData.setSelectedListId(id);\n    // re-render the lists and tasks\n    _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderLists();\n    _ui__WEBPACK_IMPORTED_MODULE_0__.ui.renderTasks();\n    // close the side menu on click\n    _ui__WEBPACK_IMPORTED_MODULE_0__.ui.openAndCloseSideMenu();\n  }\n});\n\n\n//# sourceURL=webpack://to-do-reworked/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/storage-data.js":
+/*!*****************************!*\
+  !*** ./src/storage-data.js ***!
+  \*****************************/
+/*! namespace exports */
+/*! export storageAndData [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"storageAndData\": () => /* binding */ storageAndData\n/* harmony export */ });\n/* harmony import */ var _ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ui */ \"./src/ui.js\");\n// Module imports\n;\n\n\n// Create storage and data class\nclass StorageAndData {\n  constructor() {\n    // local storage keys\n    this.LOCAL_STORAGE_LIST_KEY = 'task.lists';\n    this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';\n    // lists and selected list id\n    this.lists =\n      JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_LIST_KEY)) || [];\n    this.selectedListId =\n      localStorage.getItem(this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY) || null;\n  }\n\n  // Function to delete task from list\n  deleteTask(id) {\n    // Get current list\n    const currentList = this.findSelectedList();\n    // filter tasks to remove deleted task\n    currentList.tasks = currentList.tasks.filter((task) => task.id !== id);\n  }\n\n  // Function to clear the completed tasks\n  clearCompletedTasks() {\n    // get the current list and tasks\n    let list = this.findSelectedList();\n\n    // filter out completed tasks\n    list.tasks = list.tasks.filter((task) => task.completed === false);\n  }\n\n  // Function to delete a list\n  deleteList(id) {\n    // filter out the list with the given id\n    this.lists = this.lists.filter((list) => list.id !== id);\n  }\n\n  // Function to toggle completed status\n  toggleCompletedStatus(id) {\n    // find task using id\n    let task = this.findSelectedList().tasks.find((task) => task.id === id);\n    // if the task is set to completed change to incomplete\n    if (task.completed) {\n      task.completed = false;\n    } else {\n      // else change to completed\n      task.completed = true;\n    }\n  }\n\n  // Function to create new task\n  createNewTask(name, notes, date, time, priority) {\n    // Find selected list\n    const selectedList = this.findSelectedList();\n    // Create new task object\n    const task = {\n      id: this.createUniqueId(),\n      name,\n      notes,\n      date,\n      time,\n      priority,\n      completed: false,\n    };\n    // Push new task to list\n    selectedList.tasks.push(task);\n  }\n\n  // Function to create new list\n  createList(name) {\n    // create a new list object\n    const newList = { id: this.createUniqueId(), name: name, tasks: [] };\n    // set selected list id to new list id\n    this.selectedListId = newList.id;\n    // push new list to lists array\n    this.lists.push(newList);\n  }\n\n  // Function to sort tasks\n  sortTasks() {\n    // get sort value from dropdown\n    const option = _ui__WEBPACK_IMPORTED_MODULE_0__.ui.sortDropdown.value;\n    // get tasks\n    const tasks = this.findSelectedList().tasks;\n    //initiate sortedTasks variable\n    let sortedTasks;\n\n    if (option === 'priority') {\n      // if option is priority sort in in order of priority\n      sortedTasks = tasks.sort((a, b) => a.priority - b.priority);\n    } else if (option === 'deadline') {\n      // if option is deadline sort in in order of deadline\n      sortedTasks = tasks.sort((a, b) => new Date(a.date) - new Date(b.date));\n    } else if (option === 'date') {\n      // if option is deadline sort in in order of deadline\n      sortedTasks = tasks.sort((a, b) => a.id - b.id);\n    } else {\n      // if option is a-z sort alphabetically\n      sortedTasks = tasks.sort((a, b) => a.name.localeCompare(b.name));\n    }\n    return sortedTasks;\n  }\n\n  // Function to set selectedListId and select the list\n  setSelectedListId(id) {\n    // set selected list id\n    this.selectedListId = id;\n    // save to local storage\n    this.saveToLocalStorage();\n  }\n\n  // Function to generate unique id\n  createUniqueId() {\n    return Date.now().toString();\n  }\n\n  // Function to get selected list\n  findSelectedList() {\n    // filter lists to find one with matching ID\n    const selectedList = this.lists.find(\n      (list) => list.id === this.selectedListId\n    );\n    return selectedList;\n  }\n\n  // Function to save lists to local storage\n  saveToLocalStorage() {\n    // saves lists to local storage\n    localStorage.setItem(\n      this.LOCAL_STORAGE_LIST_KEY,\n      JSON.stringify(this.lists)\n    );\n    // saves selected list id to local storage\n    localStorage.setItem(\n      this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY,\n      this.selectedListId\n    );\n  }\n}\n\n// export storageAndData Object\nconst storageAndData = new StorageAndData();\n\n\n//# sourceURL=webpack://to-do-reworked/./src/storage-data.js?");
+
+/***/ }),
+
+/***/ "./src/ui.js":
+/*!*******************!*\
+  !*** ./src/ui.js ***!
+  \*******************/
+/*! namespace exports */
+/*! export ui [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ui\": () => /* binding */ ui\n/* harmony export */ });\n/* harmony import */ var _storage_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage-data */ \"./src/storage-data.js\");\n// Import modules\n;\n\n// CREATE UI CLASS\n\nclass UI {\n  constructor() {\n    // QUERY SELECTORS\n    this.menuToggle = document.querySelector('.menu-toggle');\n    this.closeSideMenuBtn = document.querySelector('.close-btn');\n    this.main = document.querySelector('#main');\n    this.overlay = document.querySelector('.overlay');\n    this.header = document.querySelector('.header');\n    this.currentListContainer = document.querySelector(\n      '.current-list-container'\n    );\n    this.emptyMessageContainer = document.querySelector(\n      '.empty-message-container'\n    );\n    this.allLists = document.querySelector('.lists');\n    this.currentListName = document.querySelector('.list-name');\n    this.newListForm = document.querySelector('.new-list-form');\n    this.newListInput = document.querySelector('.new-list-input');\n    this.sortDropdown = document.querySelector('#sort');\n    // query selectors for modal new task\n    this.taskTitle = document.querySelector('#task-title');\n    this.taskNotes = document.querySelector('#task-notes');\n    this.taskDate = document.querySelector('#task-date');\n    this.taskTime = document.querySelector('#task-time');\n    this.taskPriority = document.querySelector('#task-priority');\n    this.submitTaskBtn = document.querySelector('#submit-task-btn');\n    this.priorityRadio = Array.from(document.querySelectorAll('.radio'));\n    // query selectors for buttons at bottom of screen\n    this.clearCompleteBtn = document.querySelector('.clear-complete-btn');\n    this.deleteListBtn = document.querySelector('.delete-list-btn');\n  }\n\n  // FUNCTION TO OPEN AND CLOSE SIDE MENU\n  openAndCloseSideMenu() {\n    document.body.classList.toggle('open');\n  }\n\n  // FUNCTION TO RENDER TASKS TO UI\n  renderTasks() {\n    // clear element before rendering\n    this.clearElement(this.currentListContainer);\n    // get selected list\n    let list = _storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.findSelectedList();\n\n    // set list name\n    this.currentListName.textContent = _storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.findSelectedList().name;\n\n    // check if there are any tasks\n    if (list.tasks.length === 0) {\n      // if no tasks show empty tasks message\n      this.currentListContainer.innerHTML = `<div class=\"empty-message-container\" data-empty-message-container><img\n      src=\"https://img.icons8.com/ios/100/000000/empty-box.png\" />\n      <p data-message-paragraph>No tasks created.<br> Create a new task by pressing the plus</p>\n      </div>`;\n    } else {\n      // get tasks from list and sort\n      let tasks = _storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.sortTasks(list.tasks);\n\n      // loop through tasks\n      tasks.forEach((task) => {\n        // create task-card element\n        const taskCard = document.createElement('div');\n\n        // add id task id in dataset to task card\n        taskCard.dataset.id = task.id;\n\n        //check priority level and apply appropriate classes\n        if (task.priority === '1') {\n          taskCard.className = 'task-card card top-priority';\n        } else if (task.priority === '2') {\n          taskCard.className = 'task-card card mid-priority';\n        } else {\n          taskCard.className = 'task-card card low-priority';\n        }\n\n        // set innerHtml using values from task\n        taskCard.innerHTML = `\n      <div class=\"task-card-header text-center mt-3\">${task.name}</div>\n          <p class=\"date-deadline text-muted text-center\">${task.date}</p>\n          <div class=\"card-body text-muted pt-0 text-center\">\n            ${task.notes}\n          </div>\n          <div class=\"task-card-footer mb-1\">\n            <div class=\"complete-label\">mark as complete:</div>\n            <div class=\"task-card-btns-container\">\n              <label class=\"checkbox-container\">\n                <input class=\"checkbox\" type=\"checkbox\">\n                <span class=\"checkmark\"></span>\n              </label>\n              <a href=\"\"class=\"deleteBtn\"><i class=\"fas fa-trash-alt text-muted\"></i></a></div>\n          </div>\n      `;\n\n        // Select checkbox and delete btns\n        const checkbox = taskCard.querySelector('.checkbox');\n        const deletebtn = taskCard.querySelector('.deleteBtn');\n\n        // Add event listener to checkbox\n        checkbox.addEventListener('click', function () {\n          // when checkbox is clicked toggle completed\n          taskCard.classList.toggle('completed');\n          // change task to complete or incomplete\n          _storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.toggleCompletedStatus(task.id);\n          // save to local storage\n          _storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.saveToLocalStorage();\n        });\n\n        // Add event listener to delete btn\n        deletebtn.addEventListener('click', function (e) {\n          e.preventDefault();\n          // delete the task\n          _storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.deleteTask(task.id);\n          // render the tasks again\n          ui.renderTasks(_storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.findSelectedList());\n          // save to local storage\n          _storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.saveToLocalStorage();\n        });\n\n        // Check if task is complete\n        if (task.completed === true) {\n          // If task complete, check box add completed class to task card\n          checkbox.checked = true;\n          taskCard.classList.add('completed');\n        }\n\n        // append task card to container\n        this.currentListContainer.appendChild(taskCard);\n      });\n    }\n  }\n\n  // FUNCTION TO RENDER LISTS\n  renderLists() {\n    // clear element before rendering\n    this.clearElement(this.allLists);\n    // check if there are any lists\n    if (_storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.lists.length === 0) {\n      // if no lists yet made show empty lists message\n      this.currentListContainer.innerHTML = `<div class=\"empty-message-container\" data-empty-message-container><img\n      src=\"https://img.icons8.com/ios/100/000000/empty-box.png\" />\n      <p data-message-paragraph>No lists created.<br> To get started Create a new list in the side menu</p>\n      </div>`;\n    } else {\n      // loop through each list\n      _storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.lists.forEach((list) => {\n        // create list element\n        const li = document.createElement('li');\n        // if current list id = selectedList id highlight list\n        if (_storage_data__WEBPACK_IMPORTED_MODULE_0__.storageAndData.selectedListId === list.id) {\n          li.classList.add('active');\n        }\n        // set list text\n        li.textContent = list.name;\n\n        // add list id as data set\n        li.dataset.id = list.id;\n        //append list item to container\n        this.allLists.appendChild(li);\n      });\n    }\n  }\n  // Function to show list deleted message\n  showListDeletedMessage() {\n    this.currentListContainer.innerHTML = `<div class=\"empty-message-container\" data-empty-message-container><img\n      src=\"https://img.icons8.com/ios/100/000000/empty-box.png\" />\n      <p data-message-paragraph>List Deleted.<br></p>\n      </div>`;\n  }\n  // Function to clear element contents\n  clearElement(element) {\n    element.innerHTML = '';\n  }\n}\n\n// EXPORT UI\nconst ui = new UI();\n\n\n//# sourceURL=webpack://to-do-reworked/./src/ui.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	// startup
+/******/ 	// Load entry module
+/******/ 	__webpack_require__("./src/index.js");
+/******/ 	// This entry module used 'exports' so it can't be inlined
+/******/ })()
+;
