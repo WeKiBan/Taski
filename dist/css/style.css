@@ -63,17 +63,18 @@ body {
 .side-menu {
   /* height: 100%; */
   width: 250px;
-  height:100vh;
   position: fixed;
   z-index: 1250;
   top: 0;
   left: 0;
+  bottom:0;
   background-color: var(--primary-bg-color);
   overflow: hidden;
   padding: 1rem;
   transition: transform 0.5s;
   transform: translateX(-100%);
   border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* To show side menu when open */
