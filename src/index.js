@@ -81,6 +81,8 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
 
 // Event listener to delete current list
 ui.deleteListBtn.addEventListener('click', function (e) {
+  // if there is no selected list return
+  if (typeof storageAndData.findSelectedList() === undefined) return;
   // Delete the currently selected list
   storageAndData.deleteList(storageAndData.selectedListId);
   // Remove list name from ui
