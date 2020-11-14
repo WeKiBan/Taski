@@ -1,0 +1,15 @@
+{
+  "background_color": "rgba(252, 193, 74, 0.644)",
+  "description": "QuizUp",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "img/notes.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "name": "Taski",
+  "short_name": "Taski",
+  "start_url": "index.html"
+}
