@@ -9,11 +9,12 @@
   --top-red: rgba(226, 87, 80, 0.664);
   --low-green: rgba(73, 215, 135, 0.466);
 }
-
+html{
+  overflow: hidden;
+}
 
 body {
   font-family: var(--body-font-style);
-  overflow: hidden;
 }
 
 /* NAVBAR */
@@ -62,6 +63,7 @@ body {
 .side-menu {
   /* height: 100%; */
   width: 250px;
+  height:100vh;
   position: fixed;
   z-index: 1250;
   top: 0;
