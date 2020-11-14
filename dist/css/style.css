@@ -10,10 +10,14 @@
   --low-green: rgba(73, 215, 135, 0.466);
 }
 
+html, body {
+  max-width: 100%;
+  max-height:100vh;
+  overflow: hidden;
+}
+
 body {
   font-family: var(--body-font-style);
-  height:100vh;
-  overflow: hidden;
 }
 
 /* NAVBAR */
