@@ -1,4 +1,5 @@
 // Import modules
+import { add } from 'date-fns';
 import { storageAndData } from './storage-data';
 
 // CREATE UI CLASS
@@ -174,6 +175,19 @@ class UI {
   // Function to clear element contents
   clearElement(element) {
     element.innerHTML = '';
+  }
+  // Function to play sound effects
+  playSound(type) {
+    const trash = new Audio('./audio/delete.mp3');
+    const add = new Audio('./audio/add.mp3');
+
+    switch (type) {
+      case 'trash':
+        trash.play();
+        break;
+      case 'add':
+        add.play();
+    }
   }
 }
 

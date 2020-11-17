@@ -36,11 +36,12 @@ ui.newListForm.addEventListener('submit', function (e) {
   ui.newListInput.value = '';
   // Render the tasks
   ui.renderTasks();
+  // play add sound
+  ui.playSound('add');
   // Save to local storage
   storageAndData.saveToLocalStorage();
   // close the side menu on submit
   ui.openAndCloseSideMenu();
-
   e.preventDefault();
 });
 
@@ -62,12 +63,9 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
     }
   });
   // Create a new task
-  storageAndData.createNewTask(
-    taskName,
-    taskNotes,
-    taskDate,
-    priority
-  );
+  storageAndData.createNewTask(taskName, taskNotes, taskDate, priority);
+  // play add sound
+  ui.playSound('add');
   // render the tasks to the display
   ui.renderTasks();
   // save to local storage
@@ -84,6 +82,8 @@ ui.deleteListBtn.addEventListener('click', function (e) {
   storageAndData.deleteList(storageAndData.selectedListId);
   // Remove list name from ui
   ui.currentListName.textContent = '';
+  // Play Delete sound
+  ui.playSound('trash');
   // Render lists in side menu
   ui.renderLists();
   // show list deleted message
@@ -100,7 +100,8 @@ ui.clearCompleteBtn.addEventListener('click', function (e) {
   ui.renderTasks();
   // save to local storage
   storageAndData.saveToLocalStorage();
-
+  // play delete sound
+  ui.playSound('trash');
   e.preventDefault();
 });
 
