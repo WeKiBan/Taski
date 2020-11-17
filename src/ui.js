@@ -37,6 +37,10 @@ class UI {
     // query selectors for buttons at bottom of screen
     this.clearCompleteBtn = document.querySelector('.clear-complete-btn');
     this.deleteListBtn = document.querySelector('.delete-list-btn');
+    // modal btn delete list
+    this.deleteListConfirmBtn = document.querySelector(
+      '.confirm-delete-list-btn'
+    );
   }
 
   // FUNCTION TO OPEN AND CLOSE SIDE MENU
@@ -117,16 +121,23 @@ class UI {
         // Add event listener to delete btn
         deletebtn.addEventListener('click', function (e) {
           e.preventDefault();
-          // delete the task
-          storageAndData.deleteTask(task.id);
-          // render the tasks again
-          ui.renderTasks(storageAndData.findSelectedList());
-          // show alert
-          ui.showAlert('Task Deleted Successfully', 'yellow');
-          // play sound
-          ui.playSound('trash');
-          // save to local storage
-          storageAndData.saveToLocalStorage();
+          // get parent element
+          const card = e.currentTarget.parentNode.parentNode.parentNode;
+;         // delete the task
+          ui.shrinkCard(card)
+          // set timeout to delay the remainder of functions allowing time for card to shrink
+          setTimeout(function(){
+            storageAndData.deleteTask(task.id);
+            // render the tasks again
+            ui.renderTasks(storageAndData.findSelectedList());
+            // show alert
+            ui.showAlert('Task Deleted Successfully', 'yellow');
+            // play sound
+            ui.playSound('trash');
+            // save to local storage
+            storageAndData.saveToLocalStorage();
+          }, 200);
+          
         });
 
         // Check if task is complete
@@ -205,11 +216,11 @@ class UI {
     // Set Alert appropriate classes
     if (color === 'green') {
       alert.className =
-        'alert alert-success alert-div text-center p-3 fade in out';
+        'alert alert-success alert-div text-center p-1 fade in out';
     } else if (color === 'red') {
-      alert.className = 'alert alert-danger alert-div text-center p-3 fade in';
+      alert.className = 'alert alert-danger alert-div text-center p-1 fade in';
     } else {
-      alert.className = 'alert alert-warning alert-div text-center p-3 fade in';
+      alert.className = 'alert alert-warning alert-div text-center p-1 fade in';
     }
     // Append alert
     this.listWrapper.appendChild(alert);
@@ -225,6 +236,9 @@ class UI {
     setTimeout(function () {
       ui.listWrapper.removeChild(alert);
     }, 4000);
+  }
+  shrinkCard(card) {
+  card.classList.add('shrink');
   }
 }
 
