@@ -28,6 +28,7 @@ body {
   border-top: 1px solid var(--border-color);
   font-size: 1.3rem !important;
 }
+
 /* toggle button */
 .fa-bars:hover {
   transform: scale(1.1);
@@ -94,7 +95,7 @@ body {
 
 
 .lists li {
-  padding: 0.5rem 0.3rem;
+  padding: 0.5rem 0;
   font-weight: 300;
   cursor: pointer;
   transition: ease-in-out 0.3s;
@@ -111,7 +112,6 @@ body {
 /* Form to add new task */
 .new-list-form {
   display: flex;
-  margin-left: 0.2rem;
 }
 .new-list-btn {
   border: none;
