@@ -193,13 +193,12 @@ body {
 
 /* alert div */
 .alert-div{
-  display: none;
   position: absolute;
   top: 0;
   width: 100%;
   left: 50%;
   transform: translateX(-50%);
-  transition: ease-in-out 0.3s;
+  z-index:900;
 }
 
 /*  Message when there are no tasks */
@@ -228,6 +227,7 @@ body {
   top: 0.5rem;
   left: 1rem;
   font-size: 1.6rem;
+  z-index: 1000;
 }
 
 .search-btn{
