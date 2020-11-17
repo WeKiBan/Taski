@@ -9,10 +9,11 @@ class StorageAndData {
     this.LOCAL_STORAGE_LIST_KEY = 'task.lists';
     this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
     // lists and selected list id
-    this.lists =
-      JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_LIST_KEY)) || [];
+    this.lists = JSON.parse(
+      localStorage.getItem(this.LOCAL_STORAGE_LIST_KEY)
+    ) || [{ id: '1', name: 'My List', tasks: [] }];
     this.selectedListId =
-      localStorage.getItem(this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY) || null;
+      localStorage.getItem(this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY) || '1';
   }
 
   // Function to delete task from list
