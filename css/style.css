@@ -189,12 +189,14 @@ body {
   overflow: scroll;
   padding: 2rem;
   width: 100%;
+  transition: all 2s linear;
+  padding-top:3rem;
 }
 
 /* alert div */
 .alert-div{
   position: absolute;
-  top: 0;
+  top: 0.6rem;
   width: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -259,8 +261,13 @@ body {
   border: solid 1px var(--border-color);
   border-radius: 5px;
   box-shadow: 7px 8px 19px -6px rgba(0, 0, 0, 0.322);   
+  transition: 0.2s;
 }
-
+/* class to make card shrink */
+.task-card.shrink{
+  transform: scale(0);
+  transition: 0.2s;
+}
 .task-card-header{
   text-transform: capitalize;
 }
