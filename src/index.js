@@ -38,6 +38,8 @@ ui.newListForm.addEventListener('submit', function (e) {
   ui.renderTasks();
   // play add sound
   ui.playSound('add');
+  // show Alert
+  ui.showAlert('New List Created Successfully', 'green');
   // Save to local storage
   storageAndData.saveToLocalStorage();
   // close the side menu on submit
@@ -66,6 +68,8 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
   storageAndData.createNewTask(taskName, taskNotes, taskDate, priority);
   // play add sound
   ui.playSound('add');
+  // show Alert
+  ui.showAlert('New Task Added', 'green');
   // render the tasks to the display
   ui.renderTasks();
   // save to local storage
@@ -84,6 +88,8 @@ ui.deleteListBtn.addEventListener('click', function (e) {
   ui.currentListName.textContent = '';
   // Play Delete sound
   ui.playSound('trash');
+  // show Alert
+  ui.showAlert('List Deleted Successfully', 'yellow');
   // Render lists in side menu
   ui.renderLists();
   // show list deleted message
@@ -102,6 +108,8 @@ ui.clearCompleteBtn.addEventListener('click', function (e) {
   storageAndData.saveToLocalStorage();
   // play delete sound
   ui.playSound('trash');
+  // show Alert
+  ui.showAlert('Completed Tasks Cleared Successfully', 'yellow');
   e.preventDefault();
 });
 

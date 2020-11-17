@@ -15,6 +15,9 @@ class UI {
     this.currentListContainer = document.querySelector(
       '.current-list-container'
     );
+    this.listWrapper = document.querySelector(
+      '.current-list-container-wrapper'
+    );
     this.emptyMessageContainer = document.querySelector(
       '.empty-message-container'
     );
@@ -56,7 +59,7 @@ class UI {
       // if no tasks show empty tasks message
       this.currentListContainer.innerHTML = `<div class="empty-message-container" data-empty-message-container><img
       src="https://img.icons8.com/ios/100/000000/empty-box.png" />
-      <p data-message-paragraph>No tasks created.<br> Create a new task by pressing the plus</p>
+      <p data-message-paragraph>No tasks created<br> use the plus to create a new task</p>
       </div>`;
     } else {
       // get tasks from list and sort
@@ -118,6 +121,10 @@ class UI {
           storageAndData.deleteTask(task.id);
           // render the tasks again
           ui.renderTasks(storageAndData.findSelectedList());
+          // show alert
+          ui.showAlert('Task Deleted Successfully', 'yellow');
+          // play sound
+          ui.playSound('trash');
           // save to local storage
           storageAndData.saveToLocalStorage();
         });
@@ -144,7 +151,7 @@ class UI {
       // if no lists yet made show empty lists message
       this.currentListContainer.innerHTML = `<div class="empty-message-container" data-empty-message-container><img
       src="https://img.icons8.com/ios/100/000000/empty-box.png" />
-      <p data-message-paragraph>No lists created.<br> To get started Create a new list in the side menu</p>
+      <p data-message-paragraph>No lists created.<br> To get started create a new list in the side menu</p>
       </div>`;
     } else {
       // loop through each list
@@ -188,6 +195,36 @@ class UI {
       case 'add':
         add.play();
     }
+  }
+  // Function to show alerts
+  showAlert(message, color) {
+    // Create Alert Element
+    const alert = document.createElement('div');
+    // Add Alert Message
+    alert.textContent = message;
+    // Set Alert appropriate classes
+    if (color === 'green') {
+      alert.className =
+        'alert alert-success alert-div text-center p-3 fade in out';
+    } else if (color === 'red') {
+      alert.className = 'alert alert-danger alert-div text-center p-3 fade in';
+    } else {
+      alert.className = 'alert alert-warning alert-div text-center p-3 fade in';
+    }
+    // Append alert
+    this.listWrapper.appendChild(alert);
+    // use timeout function to fade in the alert
+    setTimeout(function () {
+      alert.classList.add('show');
+    }, 100);
+    // use timeout function to fade out the alert
+    setTimeout(function () {
+      alert.classList.remove('show');
+    }, 3000);
+    // and then delete the alert
+    setTimeout(function () {
+      ui.listWrapper.removeChild(alert);
+    }, 4000);
   }
 }
 
