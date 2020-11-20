@@ -14,6 +14,7 @@ class StorageAndData {
     ) || [{ id: '1', name: 'My List', tasks: [] }];
     this.selectedListId =
       localStorage.getItem(this.LOCAL_STORAGE_SELECTED_LIST_ID_KEY) || '1';
+    this.taskEditId;
   }
 
   // Function to delete task from list
@@ -22,6 +23,25 @@ class StorageAndData {
     const currentList = this.findSelectedList();
     // filter tasks to remove deleted task
     currentList.tasks = currentList.tasks.filter((task) => task.id !== id);
+  }
+  // Function to edit task
+  editTask() {
+    // Get task to edit
+    const task = this.findSelectedList().tasks.find(
+      (task) => task.id === this.taskEditId
+    );
+    // Set task title to value in modal
+    task.name = ui.taskTitleEdit.value;
+    // Set task date to value in modal
+    task.date = ui.taskDateEdit.value;
+    // Set task notes to value in modal
+    task.notes = ui.taskNotesEdit.value;
+    // Set task priority to value in modal
+    ui.priorityRadioEdit.forEach((radio) => {
+      if (radio.checked === true) {
+        task.priority = radio.value;
+      }
+    });
   }
 
   // Function to clear the completed tasks

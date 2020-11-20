@@ -41,6 +41,16 @@ class UI {
     this.deleteListConfirmBtn = document.querySelector(
       '.confirm-delete-list-btn'
     );
+    // query selectors for edit modal
+    this.taskTitleEdit = document.querySelector('#task-title-edit');
+    this.taskNotesEdit = document.querySelector('#task-notes-edit');
+    this.taskDateEdit = document.querySelector('#task-date-edit');
+    this.taskTimeEdit = document.querySelector('#task-time-edit');
+    this.taskPriorityEdit = document.querySelector('#task-priority-edit');
+    this.submitTaskBtnEdit = document.querySelector('#submit-task-btn-edit');
+    this.priorityRadioEdit = Array.from(
+      document.querySelectorAll('.radio-edit')
+    );
   }
 
   // FUNCTION TO OPEN AND CLOSE SIDE MENU
@@ -89,6 +99,8 @@ class UI {
         // set innerHtml using values from task
         taskCard.innerHTML = `
       <div class="task-card-header text-center mt-3">${task.name}</div>
+      <a href=""class="editBtn"><i class="fas fa-edit text-muted" data-toggle="modal"
+      data-target="#editModal"></i></a>
           <p class="date-deadline text-muted text-center">${task.date}</p>
           <div class="card-body text-muted pt-0 text-center">
             ${task.notes}
@@ -104,41 +116,8 @@ class UI {
           </div>
       `;
 
-        // Select checkbox and delete btns
+        // Select checkbox
         const checkbox = taskCard.querySelector('.checkbox');
-        const deletebtn = taskCard.querySelector('.deleteBtn');
-
-        // Add event listener to checkbox
-        checkbox.addEventListener('click', function () {
-          // when checkbox is clicked toggle completed
-          taskCard.classList.toggle('completed');
-          // change task to complete or incomplete
-          storageAndData.toggleCompletedStatus(task.id);
-          // save to local storage
-          storageAndData.saveToLocalStorage();
-        });
-
-        // Add event listener to delete btn
-        deletebtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          // get parent element
-          const card = e.currentTarget.parentNode.parentNode.parentNode;
-;         // delete the task
-          ui.shrinkCard(card)
-          // set timeout to delay the remainder of functions allowing time for card to shrink
-          setTimeout(function(){
-            storageAndData.deleteTask(task.id);
-            // render the tasks again
-            ui.renderTasks(storageAndData.findSelectedList());
-            // show alert
-            ui.showAlert('Task Deleted Successfully', 'yellow');
-            // play sound
-            ui.playSound('trash');
-            // save to local storage
-            storageAndData.saveToLocalStorage();
-          }, 200);
-          
-        });
 
         // Check if task is complete
         if (task.completed === true) {
@@ -238,7 +217,23 @@ class UI {
     }, 4000);
   }
   shrinkCard(card) {
-  card.classList.add('shrink');
+    card.classList.add('shrink');
+  }
+  populateEditModal(id) {
+    // Get Current Task
+    const currentTask = storageAndData
+      .findSelectedList()
+      .tasks.find((task) => task.id === id);
+    // Set Modal Values to those saved in task
+    this.taskTitleEdit.value = currentTask.name;
+    this.taskDateEdit.value = currentTask.date;
+    this.taskNotesEdit.value = currentTask.notes;
+    // set radio value
+    this.priorityRadioEdit.forEach((radio) => {
+      if (radio.value === currentTask.priority) {
+        radio.checked = true;
+      }
+    });
   }
 }
 

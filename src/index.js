@@ -66,6 +66,13 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
   });
   // Create a new task
   storageAndData.createNewTask(taskName, taskNotes, taskDate, priority);
+
+  // clear inputs 
+  ui.taskTitle.value = "";
+  ui.taskDate.value = "";
+  ui.taskNotes.value = "";
+  ui.priorityRadio[0].checked = true;
+  
   // play add sound
   ui.playSound('add');
   // show Alert
@@ -133,4 +140,72 @@ ui.allLists.addEventListener('click', function (e) {
     // close the side menu on click
     ui.openAndCloseSideMenu();
   }
+});
+
+// Event listener on current list container for buttons on cards
+ui.currentListContainer.addEventListener('click', function (e) {
+  // IF DELETE BUTTON IS CLICKED ON CARD
+  if (e.target.parentElement.classList.contains('deleteBtn')) {
+    // get id of card
+    const id =
+      e.target.parentElement.parentElement.parentElement.parentElement.dataset
+        .id;
+    // get card
+    const card =
+      e.target.parentElement.parentElement.parentElement.parentElement;
+
+    // shrink the card
+    ui.shrinkCard(card);
+
+    // set timeout to delay the remainder of functions allowing time for card to shrink
+    setTimeout(function () {
+      storageAndData.deleteTask(id);
+      // render the tasks again
+      ui.renderTasks(storageAndData.findSelectedList());
+      // show alert
+      ui.showAlert('Task Deleted Successfully', 'yellow');
+      // play sound
+      ui.playSound('trash');
+      // save to local storage
+      storageAndData.saveToLocalStorage();
+    }, 200);
+    e.preventDefault();
+
+    // IF CHECKMARK IS CLICKED ON CARD
+  } else if (e.target.classList.contains('checkmark')) {
+    // get id of card
+    const id =
+      e.target.parentElement.parentElement.parentElement.parentElement.dataset
+        .id;
+    // get card
+    const card =
+      e.target.parentElement.parentElement.parentElement.parentElement;
+
+    // when checkbox is clicked toggle completed
+    card.classList.toggle('completed');
+    // change task to complete or incomplete
+    storageAndData.toggleCompletedStatus(id);
+    // save to local storage
+    storageAndData.saveToLocalStorage();
+
+    // IF EDIT BUTTON IS CLICKED ON CARD
+  } else if (e.target.parentElement.classList.contains('editBtn')) {
+    e.preventDefault();
+    // get task id
+    const id = e.target.parentElement.parentElement.dataset.id;
+    // set current task edit id
+    storageAndData.taskEditId = id;
+    ui.populateEditModal(id);
+  }
+});
+
+ui.submitTaskBtnEdit.addEventListener('click', function (e) {
+  // Submit the edit
+  storageAndData.editTask();
+  // Save the edit to local storage
+  storageAndData.saveToLocalStorage();
+  // re render the tasks
+  ui.renderTasks();
+  // show alert
+  ui.showAlert('Task Edited Successfully', 'yellow');
 });
