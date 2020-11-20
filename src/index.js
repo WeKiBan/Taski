@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
   ui.renderLists();
   // if there are lists to render render the tasks
   if (storageAndData.lists.length !== 0) {
-    ui.renderTasks();
+    ui.renderTasks(storageAndData.findSelectedList().tasks);
   }
 });
 
@@ -35,7 +35,7 @@ ui.newListForm.addEventListener('submit', function (e) {
   // Clear input value
   ui.newListInput.value = '';
   // Render the tasks
-  ui.renderTasks();
+  ui.renderTasks(storageAndData.findSelectedList().tasks);
   // play add sound
   ui.playSound('add');
   // show Alert
@@ -78,12 +78,23 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
   // show Alert
   ui.showAlert('New Task Added', 'green');
   // render the tasks to the display
-  ui.renderTasks();
+  ui.renderTasks(storageAndData.findSelectedList().tasks);
   // save to local storage
   storageAndData.saveToLocalStorage();
 
   e.preventDefault();
 });
+
+//  event listener to submit new task with enter key
+ui.newTaskForm.onkeypress = function (e) {
+  // if enter key is pressed
+  var key = e.charCode || e.keyCode || 0;
+  if (key == 13) {
+    // click submit task btn
+    ui.submitTaskBtn.click();
+    e.preventDefault();
+  }
+};
 
 // Event listener to delete current list
 ui.deleteListConfirmBtn.addEventListener('click', function (e) {
@@ -110,7 +121,7 @@ ui.clearCompleteBtn.addEventListener('click', function (e) {
   // clear the completed tasks
   storageAndData.clearCompletedTasks();
   // render tasks
-  ui.renderTasks();
+  ui.renderTasks(storageAndData.findSelectedList().tasks);
   // save to local storage
   storageAndData.saveToLocalStorage();
   // play delete sound
@@ -123,7 +134,7 @@ ui.clearCompleteBtn.addEventListener('click', function (e) {
 //Event listener for sort dropdown
 ui.sortDropdown.addEventListener('change', function (e) {
   // render tasks
-  ui.renderTasks();
+  ui.renderTasks(storageAndData.findSelectedList().tasks);
 });
 
 // Event listener on lists in side menu to select individual list
@@ -136,7 +147,7 @@ ui.allLists.addEventListener('click', function (e) {
     storageAndData.setSelectedListId(id);
     // re-render the lists and tasks
     ui.renderLists();
-    ui.renderTasks();
+    ui.renderTasks(storageAndData.findSelectedList().tasks);
     // close the side menu on click
     ui.openAndCloseSideMenu();
   }
@@ -161,7 +172,7 @@ ui.currentListContainer.addEventListener('click', function (e) {
     setTimeout(function () {
       storageAndData.deleteTask(id);
       // render the tasks again
-      ui.renderTasks(storageAndData.findSelectedList());
+      ui.renderTasks(storageAndData.findSelectedList().tasks);
       // show alert
       ui.showAlert('Task Deleted Successfully', 'yellow');
       // play sound
@@ -199,20 +210,22 @@ ui.currentListContainer.addEventListener('click', function (e) {
   }
 });
 
+
+// event listener to submit the edited task
 ui.submitTaskBtnEdit.addEventListener('click', function (e) {
   // Submit the edit
   storageAndData.editTask();
   // Save the edit to local storage
   storageAndData.saveToLocalStorage();
   // re render the tasks
-  ui.renderTasks();
+  ui.renderTasks(storageAndData.findSelectedList().tasks);
   // show alert
   ui.showAlert('Task Edited Successfully', 'yellow');
 
   e.preventDefault();
 });
 
-// Submit with enter key
+//  event listener to submit the edited task with enter key
 ui.editTaskForm.onkeypress = function (e) {
   // if enter key is pressed
   var key = e.charCode || e.keyCode || 0;
@@ -223,12 +236,23 @@ ui.editTaskForm.onkeypress = function (e) {
   }
 };
 
-ui.newTaskForm.onkeypress = function (e) {
-  // if enter key is pressed
-  var key = e.charCode || e.keyCode || 0;
-  if (key == 13) {
-    // click submit task btn
-    ui.submitTaskBtn.click();
-    e.preventDefault();
-  }
-};
+// Event listener for search input
+ui.searchInput.addEventListener('input', function(e){
+  // get input value from search box
+  const input = ui.searchInput.value;
+  // filter the tasks using the input
+  const filteredTasks = storageAndData.filterTasks(input);
+  // render the filtered tasks to page
+  ui.renderTasks(filteredTasks);
+})
+
+// Event listener to add border to search box when in focus
+ui.searchInput.addEventListener('focus', function(){
+  ui.searchBox.classList.toggle('focus-border');
+})
+// Event listener to remove border to search box when not in focus
+ui.searchInput.addEventListener('blur', function(e){
+  ui.searchBox.classList.toggle('focus-border');
+})
+
+

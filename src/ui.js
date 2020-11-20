@@ -26,6 +26,8 @@ class UI {
     this.newListForm = document.querySelector('.new-list-form');
     this.newListInput = document.querySelector('.new-list-input');
     this.sortDropdown = document.querySelector('#sort');
+    this.searchInput = document.querySelector('.search-txt');
+    this.searchBox = document.querySelector('.search-box');
     // query selectors for modal new task
     this.taskTitle = document.querySelector('#task-title');
     this.taskNotes = document.querySelector('#task-notes');
@@ -63,17 +65,15 @@ class UI {
   }
 
   // FUNCTION TO RENDER TASKS TO UI
-  renderTasks() {
+  renderTasks(tasks) {
     // clear element before rendering
     this.clearElement(this.currentListContainer);
-    // get selected list
-    let list = storageAndData.findSelectedList();
-
+  
     // set list name
     this.currentListName.textContent = storageAndData.findSelectedList().name;
 
     // check if there are any tasks
-    if (list.tasks.length === 0) {
+    if (tasks.length === 0) {
       // if no tasks show empty tasks message
       this.currentListContainer.innerHTML = `<div class="empty-message-container" data-empty-message-container><img
       src="https://img.icons8.com/ios/100/000000/empty-box.png" />
@@ -81,10 +81,10 @@ class UI {
       </div>`;
     } else {
       // get tasks from list and sort
-      let tasks = storageAndData.sortTasks(list.tasks);
+      const sortedTasks = storageAndData.sortTasks(tasks);
 
       // loop through tasks
-      tasks.forEach((task) => {
+      sortedTasks.forEach((task) => {
         // create task-card element
         const taskCard = document.createElement('div');
 

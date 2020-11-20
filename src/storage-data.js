@@ -100,11 +100,9 @@ class StorageAndData {
   }
 
   // Function to sort tasks
-  sortTasks() {
+  sortTasks(tasks) {
     // get sort value from dropdown
     const option = ui.sortDropdown.value;
-    // get tasks
-    const tasks = this.findSelectedList().tasks;
     //initiate sortedTasks variable
     let sortedTasks;
 
@@ -122,6 +120,13 @@ class StorageAndData {
       sortedTasks = tasks.sort((a, b) => a.name.localeCompare(b.name));
     }
     return sortedTasks;
+  }
+  //function to filter tasks
+  filterTasks(input) {
+    let filteredTasks = this.findSelectedList().tasks.filter((task) =>
+      task.name.includes(input)
+    );
+    return filteredTasks;
   }
 
   // Function to set selectedListId and select the list

@@ -187,10 +187,10 @@ body {
   flex-wrap: wrap;
   gap: 12px;
   overflow: scroll;
-  padding: 2rem;
+  padding:2rem;
   width: 100%;
   transition: all 2s linear;
-  padding-top:3rem;
+  padding-top:3.1rem;
 }
 
 /* alert div */
@@ -232,17 +232,64 @@ body {
   z-index: 1000;
 }
 
-.search-btn{
+/* search bar */
+.search-box{
   position: absolute;
-  right: 1rem;
-  top: 0.5rem;
-  font-size: 1.6rem;
+  right: 0.8rem;
+  top: 0.3rem;
+  background: var(--secondary-bg-color);
+  height: 40px;
+  border-radius: 40px;
+  padding: 8px;
+  border: none;
   z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.new-task-btn:hover, .search-btn:hover {
-  transition: 0.2s;
-  transform: scale(1.2);
+.search-box a:hover{
+  text-decoration: none;
+}
+
+.focus-border{
+  border: 2px solid rgba(119, 119, 119, 0.438);
+}
+
+.search-btn{
+  color: #444444;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-size:1.6rem;
+}
+
+.search-txt{
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0 ;
+  color: #444444;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0;
+}
+
+.search-box:hover > .search-txt{
+  width: 200px; 
+  padding: 0 6px;
+}
+
+.search-txt:focus{
+  width: 200px; 
+}
+
+.search-box:hover{
+  border: 2px solid rgba(119, 119, 119, 0.438);
 }
 
 .list-btn-container {
@@ -270,6 +317,7 @@ body {
 }
 .task-card-header{
   text-transform: capitalize;
+  padding: 0 3rem;
 }
 
 /* classes to change bottom border depending on level of priority */
@@ -293,7 +341,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 0.8rem;
 }
 
 .card-body{
@@ -309,8 +357,8 @@ body {
 /* Edit card btn */
 .editBtn{
   position: absolute;
-  top: 0.5rem;
-  right:0.8rem;
+  top: 0.3rem;
+  right:0.5rem;
   opacity: 0.5;
   transition: ease-in-out 0.5s;
 }
@@ -421,3 +469,7 @@ body {
 .border-green {
   border-bottom: 1px solid var(--low-green);
 }
+
+
+
+
