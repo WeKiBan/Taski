@@ -51,6 +51,10 @@ class UI {
     this.priorityRadioEdit = Array.from(
       document.querySelectorAll('.radio-edit')
     );
+
+    // query selectors forms
+    this.newTaskForm = document.querySelector('.new-task-form');
+    this.editTaskForm = document.querySelector('.edit-task-form');
   }
 
   // FUNCTION TO OPEN AND CLOSE SIDE MENU

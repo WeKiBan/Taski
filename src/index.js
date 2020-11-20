@@ -67,12 +67,12 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
   // Create a new task
   storageAndData.createNewTask(taskName, taskNotes, taskDate, priority);
 
-  // clear inputs 
-  ui.taskTitle.value = "";
-  ui.taskDate.value = "";
-  ui.taskNotes.value = "";
+  // clear inputs
+  ui.taskTitle.value = '';
+  ui.taskDate.value = '';
+  ui.taskNotes.value = '';
   ui.priorityRadio[0].checked = true;
-  
+
   // play add sound
   ui.playSound('add');
   // show Alert
@@ -208,4 +208,27 @@ ui.submitTaskBtnEdit.addEventListener('click', function (e) {
   ui.renderTasks();
   // show alert
   ui.showAlert('Task Edited Successfully', 'yellow');
+
+  e.preventDefault();
 });
+
+// Submit with enter key
+ui.editTaskForm.onkeypress = function (e) {
+  // if enter key is pressed
+  var key = e.charCode || e.keyCode || 0;
+  if (key == 13) {
+    // click submit edit task btn
+    ui.submitTaskBtnEdit.click();
+    e.preventDefault();
+  }
+};
+
+ui.newTaskForm.onkeypress = function (e) {
+  // if enter key is pressed
+  var key = e.charCode || e.keyCode || 0;
+  if (key == 13) {
+    // click submit task btn
+    ui.submitTaskBtn.click();
+    e.preventDefault();
+  }
+};
