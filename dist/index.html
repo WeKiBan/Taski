@@ -33,7 +33,11 @@
       </nav>
       <!-- sort and list name container -->
       <div class="sort-container py-2">
-        <p class="list-name text-capitalize lead p-0 m-0"></p>
+        <div class="d-flex">
+          <p class="list-name text-capitalize lead p-0 m-0"></p>
+          <i class="fas fa-pencil-alt edit-list-name-btn align-self-center ml-2" data-toggle="modal" data-target="#editListNameModal"></i>
+        </div>
+        
         <div>
           <label class="m-0 p-0" for="sort">Sort by:</label>
           <select name="sort" id="sort" class="sort-dropdown">
@@ -234,6 +238,33 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-success confirm-delete-list-btn" data-dismiss="modal">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT LIST NAME MODAL -->
+
+  <div class="modal fade" id="editListNameModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit List Name</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="edit-list-name-form">
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="List Name" id="list-name-modal-input">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-success commit-task-btn" data-dismiss="modal"
+            id="submit-edit-list-btn">Submit</button>
         </div>
       </div>
     </div>

@@ -210,7 +210,6 @@ ui.currentListContainer.addEventListener('click', function (e) {
   }
 });
 
-
 // event listener to submit the edited task
 ui.submitTaskBtnEdit.addEventListener('click', function (e) {
   // Submit the edit
@@ -237,22 +236,45 @@ ui.editTaskForm.onkeypress = function (e) {
 };
 
 // Event listener for search input
-ui.searchInput.addEventListener('input', function(e){
+ui.searchInput.addEventListener('input', function (e) {
   // get input value from search box
   const input = ui.searchInput.value;
   // filter the tasks using the input
   const filteredTasks = storageAndData.filterTasks(input);
   // render the filtered tasks to page
   ui.renderTasks(filteredTasks);
-})
+});
 
 // Event listener to add border to search box when in focus
-ui.searchInput.addEventListener('focus', function(){
+ui.searchInput.addEventListener('focus', function () {
   ui.searchBox.classList.toggle('focus-border');
-})
+});
 // Event listener to remove border to search box when not in focus
-ui.searchInput.addEventListener('blur', function(e){
+ui.searchInput.addEventListener('blur', function (e) {
   ui.searchBox.classList.toggle('focus-border');
+});
+
+// add event listener to edit list name btn to set list name in input box when modal is opened
+ui.editListNameBtn.addEventListener('click', function (e) {
+  ui.listNameModalInput.value = storageAndData.findSelectedList().name;
+});
+
+// Even Listener to rename List
+ui.editListModalSubmitBtn.addEventListener('click', function (e) {
+  // get input value
+  storageAndData.findSelectedList().name = ui.listNameModalInput.value;
+  // re-render the tasks
+  ui.renderTasks(storageAndData.findSelectedList().tasks);
+  // re-render the lists
+  ui.renderLists();
+  // save
+  storageAndData.saveToLocalStorage();
+  // clear any search inputs
+  ui.searchInput.value = '';
+});
+
+// event listener to listen to form submit so enter button can be used.
+ui.editListNameForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  ui.editListModalSubmitBtn.click();
 })
-
-

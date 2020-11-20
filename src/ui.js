@@ -26,6 +26,7 @@ class UI {
     this.newListForm = document.querySelector('.new-list-form');
     this.newListInput = document.querySelector('.new-list-input');
     this.sortDropdown = document.querySelector('#sort');
+    this.sortContainer = document.querySelector('.sort-container');
     this.searchInput = document.querySelector('.search-txt');
     this.searchBox = document.querySelector('.search-box');
     // query selectors for modal new task
@@ -54,6 +55,13 @@ class UI {
       document.querySelectorAll('.radio-edit')
     );
 
+    // query selectors for edit list name modal
+    this.listNameModalInput = document.querySelector('#list-name-modal-input');
+    this.editListModalSubmitBtn = document.querySelector('#submit-edit-list-btn');
+    this.editListNameBtn = document.querySelector('.edit-list-name-btn');
+    this.editListNameForm = document.querySelector('.edit-list-name-form');
+
+
     // query selectors forms
     this.newTaskForm = document.querySelector('.new-task-form');
     this.editTaskForm = document.querySelector('.edit-task-form');
@@ -68,9 +76,10 @@ class UI {
   renderTasks(tasks) {
     // clear element before rendering
     this.clearElement(this.currentListContainer);
-  
+
     // set list name
-    this.currentListName.textContent = storageAndData.findSelectedList().name;
+    this.currentListName.textContent = 
+      storageAndData.findSelectedList().name;
 
     // check if there are any tasks
     if (tasks.length === 0) {
