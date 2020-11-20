@@ -245,6 +245,11 @@ body {
   z-index: 1000;
 }
 
+.new-task-btn:hover{
+  transform: scale(1.1);
+  opacity: 0.5;
+}
+
 /* search bar */
 .search-box{
   position: absolute;
@@ -261,8 +266,9 @@ body {
   align-items: center;
 }
 
-.search-box a:hover{
+.search-box:hover a{
   text-decoration: none;
+  opacity: 0.5;
 }
 
 .focus-border{
