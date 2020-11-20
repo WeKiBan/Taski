@@ -123,9 +123,7 @@ class StorageAndData {
   }
   //function to filter tasks
   filterTasks(input) {
-    let filteredTasks = this.findSelectedList().tasks.filter((task) =>
-      task.name.includes(input)
-    );
+    let filteredTasks = this.findSelectedList().tasks.filter((task) => task.name.toLowerCase().includes(input.toLowerCase()));
     return filteredTasks;
   }
 
