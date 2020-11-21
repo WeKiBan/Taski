@@ -525,4 +525,7 @@ body {
     max-height: 40%;
     overflow: scroll;
   }
+  .task-card-header{
+    padding: 0.5rem;
+  }
 }

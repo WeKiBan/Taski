@@ -14,19 +14,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Event listener on toggle button
-ui.menuToggle.addEventListener('click', function(){
+ui.menuToggle.addEventListener('click', function () {
   ui.openAndCloseSideMenu();
   ui.playSound('menu');
 });
 
 // Event listener for side menu close btn
-ui.closeSideMenuBtn.addEventListener('click', function(){
+ui.closeSideMenuBtn.addEventListener('click', function () {
   ui.openAndCloseSideMenu();
   ui.playSound('menu');
 });
 
 // Event listener on overlay to close side menu
-ui.overlay.addEventListener('click', ui.openAndCloseSideMenu);
+ui.overlay.addEventListener('click', function () {
+  ui.openAndCloseSideMenu();
+  ui.playSound('menu');
+});
 
 // Event listener to create new list
 ui.newListForm.addEventListener('submit', function (e) {
@@ -174,8 +177,8 @@ ui.currentListContainer.addEventListener('click', function (e) {
     // shrink the card
     ui.shrinkCard(card);
 
-     // play sound
-     ui.playSound('trash');
+    // play sound
+    ui.playSound('trash');
 
     // set timeout to delay the remainder of functions allowing time for card to shrink
     setTimeout(function () {
@@ -265,6 +268,18 @@ ui.searchInput.addEventListener('focus', function () {
   ui.searchBox.classList.toggle('focus-border');
   ui.searchBox.classList.toggle('search-background');
 });
+
+// Even listener to play sound when search button is clicked
+ui.magGlassBtn.addEventListener('click', function(){
+  ui.playSound('menu')
+})
+
+// Even listener to play sound when search button is hovered over
+ui.magGlassBtn.addEventListener('mouseenter', function(){
+  ui.playSound('menu')
+})
+
+
 // Event listener to remove border to search box when not in focus
 ui.searchInput.addEventListener('blur', function (e) {
   ui.searchBox.classList.toggle('focus-border');

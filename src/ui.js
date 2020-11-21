@@ -29,6 +29,7 @@ class UI {
     this.sortContainer = document.querySelector('.sort-container');
     this.searchInput = document.querySelector('.search-txt');
     this.searchBox = document.querySelector('.search-box');
+    this.magGlassBtn = document.querySelector('.fa-search');
     // query selectors for modal new task
     this.taskTitle = document.querySelector('#task-title');
     this.taskNotes = document.querySelector('#task-notes');
