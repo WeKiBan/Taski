@@ -57,10 +57,11 @@ class UI {
 
     // query selectors for edit list name modal
     this.listNameModalInput = document.querySelector('#list-name-modal-input');
-    this.editListModalSubmitBtn = document.querySelector('#submit-edit-list-btn');
+    this.editListModalSubmitBtn = document.querySelector(
+      '#submit-edit-list-btn'
+    );
     this.editListNameBtn = document.querySelector('.edit-list-name-btn');
     this.editListNameForm = document.querySelector('.edit-list-name-form');
-
 
     // query selectors forms
     this.newTaskForm = document.querySelector('.new-task-form');
@@ -78,8 +79,7 @@ class UI {
     this.clearElement(this.currentListContainer);
 
     // set list name
-    this.currentListName.textContent = 
-      storageAndData.findSelectedList().name;
+    this.currentListName.textContent = storageAndData.findSelectedList().name;
 
     // check if there are any tasks
     if (tasks.length === 0) {
@@ -190,6 +190,8 @@ class UI {
   playSound(type) {
     const trash = new Audio('./audio/delete.mp3');
     const add = new Audio('./audio/add.mp3');
+    const clickOn = new Audio('./audio/clicking-on.mp3');
+    const clickOff = new Audio('./audio/clicking-off.mp3');
 
     switch (type) {
       case 'trash':
@@ -197,6 +199,13 @@ class UI {
         break;
       case 'add':
         add.play();
+        break;
+      case 'click on':
+        clickOn.play();
+        break;
+      case 'click off':
+        clickOff.play();
+        break;
     }
   }
   // Function to show alerts

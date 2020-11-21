@@ -127,7 +127,7 @@ ui.clearCompleteBtn.addEventListener('click', function (e) {
   // play delete sound
   ui.playSound('trash');
   // show Alert
-  ui.showAlert('Completed Tasks Cleared Successfully', 'yellow');
+  ui.showAlert('Tasks Cleared Successfully', 'yellow');
   e.preventDefault();
 });
 
@@ -168,6 +168,9 @@ ui.currentListContainer.addEventListener('click', function (e) {
     // shrink the card
     ui.shrinkCard(card);
 
+     // play sound
+     ui.playSound('trash');
+
     // set timeout to delay the remainder of functions allowing time for card to shrink
     setTimeout(function () {
       storageAndData.deleteTask(id);
@@ -175,8 +178,6 @@ ui.currentListContainer.addEventListener('click', function (e) {
       ui.renderTasks(storageAndData.findSelectedList().tasks);
       // show alert
       ui.showAlert('Task Deleted Successfully', 'yellow');
-      // play sound
-      ui.playSound('trash');
       // save to local storage
       storageAndData.saveToLocalStorage();
     }, 200);
@@ -191,6 +192,12 @@ ui.currentListContainer.addEventListener('click', function (e) {
     // get card
     const card =
       e.target.parentElement.parentElement.parentElement.parentElement;
+    // check if checkbox is checked and play appropriate sound effect
+    if (e.target.previousElementSibling.checked) {
+      ui.playSound('click off');
+    } else {
+      ui.playSound('click on');
+    }
 
     // when checkbox is clicked toggle completed
     card.classList.toggle('completed');
@@ -218,6 +225,8 @@ ui.submitTaskBtnEdit.addEventListener('click', function (e) {
   storageAndData.saveToLocalStorage();
   // re render the tasks
   ui.renderTasks(storageAndData.findSelectedList().tasks);
+  // play sound
+  ui.playSound('add');
   // show alert
   ui.showAlert('Task Edited Successfully', 'yellow');
 
@@ -248,10 +257,12 @@ ui.searchInput.addEventListener('input', function (e) {
 // Event listener to add border to search box when in focus
 ui.searchInput.addEventListener('focus', function () {
   ui.searchBox.classList.toggle('focus-border');
+  ui.searchBox.classList.toggle('search-background');
 });
 // Event listener to remove border to search box when not in focus
 ui.searchInput.addEventListener('blur', function (e) {
   ui.searchBox.classList.toggle('focus-border');
+  ui.searchBox.classList.toggle('search-background');
 });
 
 // add event listener to edit list name btn to set list name in input box when modal is opened
@@ -267,6 +278,10 @@ ui.editListModalSubmitBtn.addEventListener('click', function (e) {
   ui.renderTasks(storageAndData.findSelectedList().tasks);
   // re-render the lists
   ui.renderLists();
+  // play sound
+  ui.playSound('add');
+  // show alert
+  ui.showAlert('Name Change Successful', 'yellow');
   // save
   storageAndData.saveToLocalStorage();
   // clear any search inputs
@@ -274,7 +289,7 @@ ui.editListModalSubmitBtn.addEventListener('click', function (e) {
 });
 
 // event listener to listen to form submit so enter button can be used.
-ui.editListNameForm.addEventListener('submit', function(e){
+ui.editListNameForm.addEventListener('submit', function (e) {
   e.preventDefault();
   ui.editListModalSubmitBtn.click();
-})
+});
