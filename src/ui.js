@@ -125,7 +125,8 @@ class UI {
                 <input class="checkbox" type="checkbox">
                 <span class="checkmark"></span>
               </label>
-              <a href=""class="deleteBtn"><i class="fas fa-trash-alt text-muted"></i></a></div>
+              <a href=""class="deleteBtn"><i class="fas fa-trash-alt text-muted"></i></a>
+            </div>
           </div>
       `;
 
