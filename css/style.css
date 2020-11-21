@@ -252,7 +252,7 @@ body {
 
 /* search bar */
 .search-box {
-  background: var(--secondary-bg-color);
+  background: none;
   position: absolute;
   right: 0.8rem;
   top: 0.4rem;
@@ -264,6 +264,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .search-box:hover a {
@@ -292,10 +293,12 @@ body {
   float: left;
   padding: 0;
   color: #444444;
+  background-color: var(--secondary-bg-color);
   font-size: 16px;
   transition: 0.4s;
   line-height: 40px;
   width: 0;
+  margin-right:0.3rem;
 }
 
 .search-box:hover > .search-txt {
@@ -485,4 +488,27 @@ body {
 
 .border-green {
   border-bottom: 1px solid var(--low-green);
+}
+
+/* MEDIA QUERY FOR WHEN PHONE IS SIDEWAYS */
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  .task-card {
+    height: 200px;
+    width: 180px;
+  }
+  .navbar{
+    display: none !important;
+  }
+  .current-list-container{
+   padding:0 1rem;
+  }
+  .complete-label{
+    display:none;
+  }
+  .task-card-btns-container{
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.1rem;
+  }
 }
