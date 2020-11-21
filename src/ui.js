@@ -115,7 +115,7 @@ class UI {
       <a href=""class="editBtn"><i class="fas fa-edit text-muted" data-toggle="modal"
       data-target="#editModal"></i></a>
           <p class="date-deadline text-muted text-center">${task.date}</p>
-          <div class="card-body text-muted pt-0 text-center">
+          <div class="card-body text-muted pt-0 text-center task-notes">
             ${task.notes}
           </div>
           <div class="task-card-footer mb-1">
@@ -190,9 +190,10 @@ class UI {
   // Function to play sound effects
   playSound(type) {
     const trash = new Audio('./audio/delete.mp3');
-    const add = new Audio('./audio/add.mp3');
+    const add = new Audio('./audio/add.wav');
     const clickOn = new Audio('./audio/clicking-on.mp3');
     const clickOff = new Audio('./audio/clicking-off.mp3');
+    const menu = new Audio('./audio/menu.wav');
 
     switch (type) {
       case 'trash':
@@ -206,6 +207,9 @@ class UI {
         break;
       case 'click off':
         clickOff.play();
+        break;
+      case 'menu':
+        menu.play();
         break;
     }
   }

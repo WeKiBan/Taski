@@ -342,21 +342,15 @@ body {
   padding: 0 3rem;
 }
 
-/* classes to change bottom border depending on level of priority */
-.top-priority {
-  border-bottom: solid var(--top-red) 6px;
-}
-.mid-priority {
-  border-bottom: solid var(--mid-orange) 6px;
-}
-.low-priority {
-  border-bottom: solid var(--low-green) 6px;
-}
-
 .date-deadline {
   font-size: 0.9rem;
   opacity: 0.6;
   font-weight: 100;
+}
+
+.task-notes{
+  max-height: 60%;
+  overflow: scroll;
 }
 
 .task-card-footer {
@@ -364,6 +358,9 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 0.8rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .card-body {
@@ -374,6 +371,17 @@ body {
   font-size: 1rem;
   opacity: 0.5;
   font-weight: 300;
+}
+
+/* classes to change bottom border depending on level of priority */
+.top-priority {
+  border-bottom: solid var(--top-red) 6px;
+}
+.mid-priority {
+  border-bottom: solid var(--mid-orange) 6px;
+}
+.low-priority {
+  border-bottom: solid var(--low-green) 6px;
 }
 
 /* Edit card btn */
@@ -510,5 +518,9 @@ body {
     position: absolute;
     right: 0.5rem;
     bottom: 0.1rem;
+  }
+  .task-notes{
+    max-height: 40%;
+    overflow: scroll;
   }
 }
