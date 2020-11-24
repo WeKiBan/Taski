@@ -115,19 +115,19 @@
 
               <input class="form-control" type="text" name="task-title" placeholder="Task Title" id="task-title" maxlength = "15">
             </div>
-            <div class="form-group">
+            <div class="form-group form-notes">
               <textarea class="form-control" name="notes" id="task-notes" cols="30" rows="3"
                 placeholder="Notes"></textarea>
             </div>
             <div class="form-group">
-              <label for="task-date">Deadline Date</label>
+              <label for="task-date" class="deadline-label">Deadline Date</label>
               <input class="form-control" type="date" name="date" id="task-date">
             </div>
 
 
 
-            <div class="from-group">
-              <label>Choose priority level:</label>
+            <div class="from-group form-radio">
+              <label class="priority-label">Choose priority level:</label>
 
               <div class="form-check">
                 <input class="form-check-input radio" type="radio" name="priority" id="top-priority" value="1" checked>
@@ -177,18 +177,18 @@
             <input class="form-control" type="text" name="task-title" placeholder="Task Title" id="task-title-edit" maxlength = "15">
           </div>
           <div class="form-group">
-            <textarea class="form-control" name="notes" id="task-notes-edit" cols="30" rows="3"
+            <textarea class="form-control form-notes" name="notes" id="task-notes-edit" cols="30" rows="3"
               placeholder="Notes"></textarea>
           </div>
           <div class="form-group">
-            <label for="task-date-edit">Deadline Date</label>
+            <label for="task-date-edit" class="deadline-label">Deadline Date</label>
             <input class="form-control" type="date" name="date" id="task-date-edit">
           </div>
 
 
 
           <div class="from-group">
-            <label>Choose priority level:</label>
+            <label class="priority-label">Choose priority level:</label>
 
             <div class="form-check">
               <input class="form-check-input radio-edit" type="radio" name="priority" id="top-priority-edit" value="1">

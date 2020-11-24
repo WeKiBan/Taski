@@ -528,4 +528,19 @@ body {
   .task-card-header{
     padding: 0.5rem;
   }
+
+  .new-task-form, .edit-task-form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.6rem;
+  }
+  .form-radio, .form-notes{
+    order: -1;
+  }
+  .deadline-label, .priority-label{
+    display: none;
+  }
+  .modal-header, .modal-footer{
+    padding:0.5rem 1rem;;
+  }
 }
