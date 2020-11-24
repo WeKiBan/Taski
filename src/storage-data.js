@@ -111,7 +111,7 @@ class StorageAndData {
       sortedTasks = tasks.sort((a, b) => a.priority - b.priority);
     } else if (option === 'deadline') {
       // if option is deadline sort in in order of deadline
-      sortedTasks = tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+      sortedTasks = tasks.sort((a, b) => new Date(b.date) - new Date(a.date));
     } else if (option === 'date') {
       // if option is deadline sort in in order of deadline
       sortedTasks = tasks.sort((a, b) => a.id - b.id);

@@ -1,6 +1,7 @@
 // Import modules
-import { add } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { storageAndData } from './storage-data';
+
 
 // CREATE UI CLASS
 
@@ -95,6 +96,8 @@ class UI {
 
       // loop through tasks
       sortedTasks.forEach((task) => {
+
+        
         // create task-card element
         const taskCard = document.createElement('div');
 
@@ -115,7 +118,7 @@ class UI {
       <div class="task-card-header text-center mt-3">${task.name}</div>
       <a href=""class="editBtn"><i class="fas fa-edit text-muted" data-toggle="modal"
       data-target="#editModal"></i></a>
-          <p class="date-deadline text-muted text-center">${task.date}</p>
+          <p class="date-deadline text-muted text-center">${formatDistanceToNow(new Date(task.date))} to go</p>
           <div class="card-body text-muted pt-0 text-center task-notes">
             ${task.notes}
           </div>
