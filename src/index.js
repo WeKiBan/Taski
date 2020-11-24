@@ -16,19 +16,16 @@ document.addEventListener('DOMContentLoaded', function () {
 // Event listener on toggle button
 ui.menuToggle.addEventListener('click', function () {
   ui.openAndCloseSideMenu();
-  ui.playSound('menu');
 });
 
 // Event listener for side menu close btn
 ui.closeSideMenuBtn.addEventListener('click', function () {
   ui.openAndCloseSideMenu();
-  ui.playSound('menu');
 });
 
 // Event listener on overlay to close side menu
 ui.overlay.addEventListener('click', function () {
   ui.openAndCloseSideMenu();
-  ui.playSound('menu');
 });
 
 // Event listener to create new list

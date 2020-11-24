@@ -72,6 +72,8 @@ class UI {
   // FUNCTION TO OPEN AND CLOSE SIDE MENU
   openAndCloseSideMenu() {
     document.body.classList.toggle('open');
+    // play sound if menu is opened or closed
+    ui.playSound('menu');
   }
 
   // FUNCTION TO RENDER TASKS TO UI
