@@ -33,10 +33,17 @@ ui.overlay.addEventListener('click', function () {
 
 // Event listener to create new list
 ui.newListForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  if(ui.newListInput.value === ''){
+    ui.newListFormAlert.classList.add('show');
+    setTimeout(function(){
+      ui.newListFormAlert.classList.remove('show');
+    }, 3000)
+    return;
+  }
   // Get new list name from input
   const listName = ui.newListInput.value;
 
-  if (listName === '') return;
   // Create new list item
   storageAndData.createList(listName);
   // Render lists in side menu
@@ -53,7 +60,6 @@ ui.newListForm.addEventListener('submit', function (e) {
   storageAndData.saveToLocalStorage();
   // close the side menu on submit
   ui.openAndCloseSideMenu();
-  e.preventDefault();
 });
 
 // event listener on add new task button to remove any previously added classes
@@ -315,11 +321,18 @@ ui.searchInput.addEventListener('blur', function (e) {
 
 // add event listener to edit list name btn to set list name in input box when modal is opened
 ui.editListNameBtn.addEventListener('click', function (e) {
+  // remove is invalid class to remove any alerts
+  ui.listNameModalInput.classList.remove('is-invalid');
+  // set name to value in input
   ui.listNameModalInput.value = storageAndData.findSelectedList().name;
 });
 
 // Even Listener to rename List
 ui.editListModalSubmitBtn.addEventListener('click', function (e) {
+  if (ui.listNameModalInput.value === '') {
+    ui.listNameModalInput.classList.add('is-invalid');
+    return;
+  }
   // get input value
   storageAndData.findSelectedList().name = ui.listNameModalInput.value;
   // re-render the tasks
@@ -334,6 +347,8 @@ ui.editListModalSubmitBtn.addEventListener('click', function (e) {
   storageAndData.saveToLocalStorage();
   // clear any search inputs
   ui.searchInput.value = '';
+  // close modal with jquery
+  $('#editListNameModal').modal('hide');
 });
 
 // event listener to listen to form submit so enter button can be used.

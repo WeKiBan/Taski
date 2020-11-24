@@ -24,6 +24,7 @@ class UI {
     this.allLists = document.querySelector('.lists');
     this.currentListName = document.querySelector('.list-name');
     this.newListForm = document.querySelector('.new-list-form');
+    this.newListFormAlert = document.querySelector('.list-alert')
     this.newListInput = document.querySelector('.new-list-input');
     this.sortDropdown = document.querySelector('#sort');
     this.sortContainer = document.querySelector('.sort-container');

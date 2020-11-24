@@ -112,6 +112,7 @@ body {
 /* Form to add new task */
 .new-list-form {
   display: flex;
+  flex-direction: column;
 }
 .new-list-btn {
   border: none;
@@ -264,7 +265,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding-right:0.5rem;
+  padding-right: 0.5rem;
 }
 
 .search-box:hover a {
@@ -300,14 +301,14 @@ body {
 
 .search-box:hover > .search-txt {
   width: 200px;
-  margin-right:0.4rem;
+  margin-right: 0.4rem;
   padding-left: 1rem;
   background-color: var(--secondary-bg-color);
 }
 
 .search-txt:focus {
   width: 200px;
-  margin-right:0.4rem;
+  margin-right: 0.4rem;
   padding-left: 1rem;
   background-color: var(--secondary-bg-color);
 }
@@ -350,7 +351,7 @@ body {
   font-weight: 100;
 }
 
-.task-notes{
+.task-notes {
   max-height: 60%;
   overflow: scroll;
 }
@@ -499,6 +500,10 @@ body {
 .border-green {
   border-bottom: 1px solid var(--low-green);
 }
+/* Universal class */
+.show {
+  display: block !important;
+}
 
 /* MEDIA QUERY FOR WHEN PHONE IS SIDEWAYS */
 
@@ -507,43 +512,47 @@ body {
     height: 200px;
     width: 180px;
   }
-  .navbar{
+  .navbar {
     display: none !important;
   }
-  .current-list-container{
-   padding:1rem;
+  .current-list-container {
+    padding: 1rem;
   }
-  .complete-label{
-    display:none;
+  .complete-label {
+    display: none;
   }
-  .task-card-btns-container{
+  .task-card-btns-container {
     position: absolute;
     right: 0.5rem;
     bottom: 0.1rem;
   }
-  .task-notes{
+  .task-notes {
     max-height: 40%;
     overflow: scroll;
   }
-  .task-card-header{
+  .task-card-header {
     padding: 0.5rem;
   }
 
-  .new-task-form, .edit-task-form{
+  .new-task-form,
+  .edit-task-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0.6rem;
   }
-  .form-radio, .form-notes{
+  .form-radio,
+  .form-notes {
     order: -1;
   }
-  .deadline-label, .priority-label{
+  .deadline-label,
+  .priority-label {
     display: none;
   }
-  .modal-header, .modal-footer{
-    padding:0.5rem 1rem;;
+  .modal-header,
+  .modal-footer {
+    padding: 0.5rem 1rem;
   }
-  .date-deadline{
+  .date-deadline {
     margin-bottom: 0.3rem;
   }
 }
