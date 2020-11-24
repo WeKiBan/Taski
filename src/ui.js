@@ -2,7 +2,6 @@
 import { formatDistanceToNow } from 'date-fns';
 import { storageAndData } from './storage-data';
 
-
 // CREATE UI CLASS
 
 class UI {
@@ -32,10 +31,10 @@ class UI {
     this.searchBox = document.querySelector('.search-box');
     this.magGlassBtn = document.querySelector('.fa-search');
     // query selectors for modal new task
+    this.newTaskModal = document.querySelector('#modal');
     this.taskTitle = document.querySelector('#task-title');
     this.taskNotes = document.querySelector('#task-notes');
     this.taskDate = document.querySelector('#task-date');
-    this.taskTime = document.querySelector('#task-time');
     this.taskPriority = document.querySelector('#task-priority');
     this.submitTaskBtn = document.querySelector('#submit-task-btn');
     this.priorityRadio = Array.from(document.querySelectorAll('.radio'));
@@ -50,7 +49,6 @@ class UI {
     this.taskTitleEdit = document.querySelector('#task-title-edit');
     this.taskNotesEdit = document.querySelector('#task-notes-edit');
     this.taskDateEdit = document.querySelector('#task-date-edit');
-    this.taskTimeEdit = document.querySelector('#task-time-edit');
     this.taskPriorityEdit = document.querySelector('#task-priority-edit');
     this.submitTaskBtnEdit = document.querySelector('#submit-task-btn-edit');
     this.priorityRadioEdit = Array.from(
@@ -96,8 +94,6 @@ class UI {
 
       // loop through tasks
       sortedTasks.forEach((task) => {
-
-        
         // create task-card element
         const taskCard = document.createElement('div');
 
@@ -118,7 +114,10 @@ class UI {
       <div class="task-card-header text-center mt-3">${task.name}</div>
       <a href=""class="editBtn"><i class="fas fa-edit text-muted" data-toggle="modal"
       data-target="#editModal"></i></a>
-          <p class="date-deadline text-muted text-center">Due ${formatDistanceToNow(new Date(task.date), {addSuffix: true})}</p>
+          <p class="date-deadline text-muted text-center">Due ${formatDistanceToNow(
+            new Date(task.date),
+            { addSuffix: true }
+          )}</p>
           <div class="card-body text-muted pt-0 text-center task-notes">
             ${task.notes}
           </div>
@@ -265,6 +264,40 @@ class UI {
         radio.checked = true;
       }
     });
+  }
+  // function to add form validation classes edit modal
+  addFormValidationClassesEditTask() {
+    if (this.taskTitleEdit.value === '') {
+      this.taskTitleEdit.classList.add('is-invalid');
+    }
+    if (this.taskNotesEdit.value === '') {
+      this.taskNotesEdit.classList.add('is-invalid');
+    }
+    if (this.taskDateEdit.value === '') {
+      this.taskDateEdit.classList.add('is-invalid');
+    }
+  }
+  // function to add form validation classes new task modal
+  addFormValidationClassesNewTask() {
+    if (this.taskTitle.value === '') {
+      this.taskTitle.classList.add('is-invalid');
+    }
+    if (this.taskNotes.value === '') {
+      this.taskNotes.classList.add('is-invalid');
+    }
+    if (this.taskDate.value === '') {
+      this.taskDate.classList.add('is-invalid');
+    }
+  }
+
+  // function to remove form validation classes
+  removeFormValidationClasses() {
+    this.taskTitle.classList.remove('is-invalid');
+    this.taskNotes.classList.remove('is-invalid');
+    this.taskDate.classList.remove('is-invalid');
+    this.taskTitleEdit.classList.remove('is-invalid');
+    this.taskNotesEdit.classList.remove('is-invalid');
+    this.taskDateEdit.classList.remove('is-invalid');
   }
 }
 

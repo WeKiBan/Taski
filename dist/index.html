@@ -112,16 +112,24 @@
 
           <form class="new-task-form">
             <div class="form-group">
-
               <input class="form-control" type="text" name="task-title" placeholder="Task Title" id="task-title" maxlength = "15">
+              <div class="invalid-feedback">
+                Please complete all fields
+              </div>
             </div>
             <div class="form-group form-notes">
               <textarea class="form-control" name="notes" id="task-notes" cols="30" rows="3"
                 placeholder="Notes"></textarea>
+                <div class="invalid-feedback">
+                  Please complete all fields
+                </div>
             </div>
             <div class="form-group">
               <label for="task-date" class="deadline-label">Deadline Date</label>
               <input class="form-control" type="date" name="date" id="task-date">
+              <div class="invalid-feedback">
+                Please complete all fields
+              </div>
             </div>
 
 
@@ -152,7 +160,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-success commit-task-btn" data-dismiss="modal"
+          <button type="submit" class="btn btn-success commit-task-btn"
             id="submit-task-btn">Submit</button>
         </div>
       </div>
@@ -173,12 +181,17 @@
 
         <form class="edit-task-form">
           <div class="form-group">
-
             <input class="form-control" type="text" name="task-title" placeholder="Task Title" id="task-title-edit" maxlength = "15">
+            <div class="invalid-feedback">
+              Please complete all fields
+            </div>
           </div>
-          <div class="form-group">
+          <div class="form-group form-notes">
             <textarea class="form-control form-notes" name="notes" id="task-notes-edit" cols="30" rows="3"
               placeholder="Notes"></textarea>
+              <div class="invalid-feedback">
+                Please complete all fields
+              </div>
           </div>
           <div class="form-group">
             <label for="task-date-edit" class="deadline-label">Deadline Date</label>
@@ -187,7 +200,7 @@
 
 
 
-          <div class="from-group">
+          <div class="from-group form-radio">
             <label class="priority-label">Choose priority level:</label>
 
             <div class="form-check">
@@ -213,7 +226,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-success commit-task-btn" data-dismiss="modal"
+        <button type="submit" class="btn btn-success commit-task-btn"
           id="submit-task-btn-edit">Submit</button>
       </div>
     </div>

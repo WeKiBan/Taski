@@ -511,7 +511,7 @@ body {
     display: none !important;
   }
   .current-list-container{
-   padding:0 1rem;
+   padding:1rem;
   }
   .complete-label{
     display:none;
@@ -542,5 +542,8 @@ body {
   }
   .modal-header, .modal-footer{
     padding:0.5rem 1rem;;
+  }
+  .date-deadline{
+    margin-bottom: 0.3rem;
   }
 }

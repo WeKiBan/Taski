@@ -56,8 +56,22 @@ ui.newListForm.addEventListener('submit', function (e) {
   e.preventDefault();
 });
 
+// event listener on add new task button to remove any previously added classes
+$('.new-task-btn').click(function () {
+  ui.removeFormValidationClasses();
+});
+
 // Event Listener to submit new task
 ui.submitTaskBtn.addEventListener('click', function (e) {
+  // check for empty fields and show alert
+  if (
+    ui.taskTitle.value === '' ||
+    ui.taskNotes.value === '' ||
+    ui.taskDate.value === ''
+  ) {
+    ui.addFormValidationClassesNewTask();
+    return;
+  }
   // Get task title
   const taskName = ui.taskTitle.value.toLowerCase();
   // Get task notes
@@ -90,6 +104,9 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
   ui.renderTasks(storageAndData.findSelectedList().tasks);
   // save to local storage
   storageAndData.saveToLocalStorage();
+
+  // close the modal
+  $('#modal').modal('hide');
 
   e.preventDefault();
 });
@@ -222,12 +239,22 @@ ui.currentListContainer.addEventListener('click', function (e) {
     const id = e.target.parentElement.parentElement.dataset.id;
     // set current task edit id
     storageAndData.taskEditId = id;
+    // populate the edit modal with correct info
     ui.populateEditModal(id);
   }
 });
 
 // event listener to submit the edited task
 ui.submitTaskBtnEdit.addEventListener('click', function (e) {
+  // check for empty fields and show alert
+  if (
+    ui.taskTitleEdit.value === '' ||
+    ui.taskNotesEdit.value === '' ||
+    ui.taskDateEdit.value === ''
+  ) {
+    ui.addFormValidationClassesEditTask();
+    return;
+  }
   // Submit the edit
   storageAndData.editTask();
   // Save the edit to local storage
@@ -238,7 +265,8 @@ ui.submitTaskBtnEdit.addEventListener('click', function (e) {
   ui.playSound('add');
   // show alert
   ui.showAlert('Task Edited Successfully', 'yellow');
-
+  // close modal
+  $('#editModal').modal('hide');
   e.preventDefault();
 });
 
@@ -270,15 +298,14 @@ ui.searchInput.addEventListener('focus', function () {
 });
 
 // Even listener to play sound when search button is clicked
-ui.magGlassBtn.addEventListener('click', function(){
-  ui.playSound('menu')
-})
+ui.magGlassBtn.addEventListener('click', function () {
+  ui.playSound('menu');
+});
 
 // Even listener to play sound when search button is hovered over
-ui.magGlassBtn.addEventListener('mouseenter', function(){
-  ui.playSound('menu')
-})
-
+ui.magGlassBtn.addEventListener('mouseenter', function () {
+  ui.playSound('menu');
+});
 
 // Event listener to remove border to search box when not in focus
 ui.searchInput.addEventListener('blur', function (e) {
@@ -313,4 +340,54 @@ ui.editListModalSubmitBtn.addEventListener('click', function (e) {
 ui.editListNameForm.addEventListener('submit', function (e) {
   e.preventDefault();
   ui.editListModalSubmitBtn.click();
+});
+
+// New Task Modal Form Validation
+ui.taskTitle.addEventListener('blur', function () {
+  if (ui.taskTitle.value === '') {
+    ui.taskTitle.classList.add('is-invalid');
+  } else {
+    ui.taskTitle.classList.remove('is-invalid');
+  }
+});
+
+ui.taskNotes.addEventListener('blur', function () {
+  if (ui.taskNotes.value === '') {
+    ui.taskNotes.classList.add('is-invalid');
+  } else {
+    ui.taskNotes.classList.remove('is-invalid');
+  }
+});
+
+ui.taskDate.addEventListener('blur', function () {
+  if (ui.taskDate.value === '') {
+    ui.taskDate.classList.add('is-invalid');
+  } else {
+    ui.taskDate.classList.remove('is-invalid');
+  }
+});
+
+// New Task Modal Form Validation
+ui.taskTitleEdit.addEventListener('blur', function () {
+  if (ui.taskTitleEdit.value === '') {
+    ui.taskTitleEdit.classList.add('is-invalid');
+  } else {
+    ui.taskTitleEdit.classList.remove('is-invalid');
+  }
+});
+
+ui.taskNotesEdit.addEventListener('blur', function () {
+  if (ui.taskNotesEdit.value === '') {
+    ui.taskNotesEdit.classList.add('is-invalid');
+  } else {
+    ui.taskNotesEdit.classList.remove('is-invalid');
+  }
+});
+
+ui.taskDateEdit.addEventListener('blur', function () {
+  if (ui.taskDateEdit.value === '') {
+    ui.taskDateEdit.classList.add('is-invalid');
+  } else {
+    ui.taskDateEdit.classList.remove('is-invalid');
+  }
 });
