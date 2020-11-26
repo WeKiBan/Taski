@@ -72,8 +72,6 @@ class UI {
   // FUNCTION TO OPEN AND CLOSE SIDE MENU
   openAndCloseSideMenu() {
     document.body.classList.toggle('open');
-    // play sound if menu is opened or closed
-    ui.playSound('menu');
   }
 
   // FUNCTION TO RENDER TASKS TO UI
@@ -193,32 +191,7 @@ class UI {
   clearElement(element) {
     element.innerHTML = '';
   }
-  // Function to play sound effects
-  playSound(type) {
-    const trash = new Audio('./audio/delete.mp3');
-    const add = new Audio('./audio/add.wav');
-    const clickOn = new Audio('./audio/clicking-on.mp3');
-    const clickOff = new Audio('./audio/clicking-off.mp3');
-    const menu = new Audio('./audio/menu.wav');
-
-    switch (type) {
-      case 'trash':
-        trash.play();
-        break;
-      case 'add':
-        add.play();
-        break;
-      case 'click on':
-        clickOn.play();
-        break;
-      case 'click off':
-        clickOff.play();
-        break;
-      case 'menu':
-        menu.play();
-        break;
-    }
-  }
+  
   // Function to show alerts
   showAlert(message, color) {
     // Create Alert Element

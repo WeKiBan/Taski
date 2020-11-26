@@ -49,8 +49,7 @@ ui.newListForm.addEventListener('submit', function (e) {
   ui.newListInput.value = '';
   // Render the tasks
   ui.renderTasks(storageAndData.findSelectedList().tasks);
-  // play add sound
-  ui.playSound('add');
+  
   // show Alert
   ui.showAlert('New List Created Successfully', 'green');
   // Save to local storage
@@ -99,8 +98,6 @@ ui.submitTaskBtn.addEventListener('click', function (e) {
   ui.taskNotes.value = '';
   ui.priorityRadio[0].checked = true;
 
-  // play add sound
-  ui.playSound('add');
   // show Alert
   ui.showAlert('New Task Added', 'green');
   // render the tasks to the display
@@ -133,8 +130,7 @@ ui.deleteListConfirmBtn.addEventListener('click', function (e) {
   storageAndData.deleteList(storageAndData.selectedListId);
   // Remove list name from ui
   ui.currentListName.textContent = '';
-  // Play Delete sound
-  ui.playSound('trash');
+ 
   // show Alert
   ui.showAlert('List Deleted Successfully', 'yellow');
   // Render lists in side menu
@@ -153,8 +149,7 @@ ui.clearCompleteBtn.addEventListener('click', function (e) {
   ui.renderTasks(storageAndData.findSelectedList().tasks);
   // save to local storage
   storageAndData.saveToLocalStorage();
-  // play delete sound
-  ui.playSound('trash');
+ 
   // show Alert
   ui.showAlert('Tasks Cleared Successfully', 'yellow');
   e.preventDefault();
@@ -197,9 +192,6 @@ ui.currentListContainer.addEventListener('click', function (e) {
     // shrink the card
     ui.shrinkCard(card);
 
-    // play sound
-    ui.playSound('trash');
-
     // set timeout to delay the remainder of functions allowing time for card to shrink
     setTimeout(function () {
       storageAndData.deleteTask(id);
@@ -221,13 +213,7 @@ ui.currentListContainer.addEventListener('click', function (e) {
     // get card
     const card =
       e.target.parentElement.parentElement.parentElement.parentElement;
-    // check if checkbox is checked and play appropriate sound effect
-    if (e.target.previousElementSibling.checked) {
-      ui.playSound('click off');
-    } else {
-      ui.playSound('click on');
-    }
-
+   
     // when checkbox is clicked toggle completed
     card.classList.toggle('completed');
     // change task to complete or incomplete
@@ -264,8 +250,6 @@ ui.submitTaskBtnEdit.addEventListener('click', function (e) {
   storageAndData.saveToLocalStorage();
   // re render the tasks
   ui.renderTasks(storageAndData.findSelectedList().tasks);
-  // play sound
-  ui.playSound('add');
   // show alert
   ui.showAlert('Task Edited Successfully', 'yellow');
   // close modal
@@ -300,15 +284,7 @@ ui.searchInput.addEventListener('focus', function () {
   ui.searchBox.classList.toggle('search-background');
 });
 
-// Even listener to play sound when search button is clicked
-ui.magGlassBtn.addEventListener('click', function () {
-  ui.playSound('menu');
-});
 
-// Even listener to play sound when search button is hovered over
-ui.magGlassBtn.addEventListener('mouseenter', function () {
-  ui.playSound('menu');
-});
 
 // Event listener to remove border to search box when not in focus
 ui.searchInput.addEventListener('blur', function (e) {
@@ -336,8 +312,6 @@ ui.editListModalSubmitBtn.addEventListener('click', function (e) {
   ui.renderTasks(storageAndData.findSelectedList().tasks);
   // re-render the lists
   ui.renderLists();
-  // play sound
-  ui.playSound('add');
   // show alert
   ui.showAlert('Name Change Successful', 'yellow');
   // save
