@@ -39,6 +39,23 @@ To create a new list the user can open the side menu and enter the list name in 
 
 ![](dist/img/addNewList.gif)
 
+There is also a search feature which can be found in the upper right hand corner. When the user types in this search field the tasks are filtered to match the input.
+
+![](dist/img/searchFunction.gif)
+
+This functionality was achieved by filtering the rendered tasks depending on the input.
+
+```javascript
+ui.searchInput.addEventListener('input', function (e) {
+  // get input value from search box
+  const input = ui.searchInput.value;
+  // filter the tasks using the input
+  const filteredTasks = storageAndData.filterTasks(input);
+  // render the filtered tasks to page
+  ui.renderTasks(filteredTasks);
+});
+```
+
 ### Potential Future Features
 
 - Adding a log-in feature so tasks can be accessed from different machines.
